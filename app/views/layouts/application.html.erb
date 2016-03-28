@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>TreePermission</title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+
+<% if user_signed_in? %>
+  <ul>
+    <li>
+      <%= link_to"#" do %>
+      (
+        <% if current_user.admin? %>
+          Admin
+        <% elsif current_user.manager? %>
+          Manager
+        <% elsif current_user.agent? %>
+          Agent
+        <% end %>
+      )
+      <% end %>
+    </li>
+    <li>
+      <%= link_to '#' do %>
+        <%= current_user.email %>
+      <% end %>
+    </li>
+    <ul>
+      <li><%= link_to "Add user", new_user_path %></li>
+      <li><%= link_to "List users", users_path %></li>
+      <li><%= link_to "Functionalities", functionalities_path %></li>
+      <li><%= link_to "Profiles", profiles_path %></li>
+      <li><%= link_to "Account", edit_user_registration_path %></li>
+      <li><%= link_to "Log out", destroy_user_session_path, :method => :delete %></li>
+    </ul>
+  </ul>
+<% end %>
+
+<%= yield %>
+
+</body>
+</html>
