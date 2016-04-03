@@ -11,6 +11,13 @@
     </div>
   <% end %>
 
+  <% if current_user.manager? %>
+    <%= f.hidden_field :manager_id, value: current_user.manager.id %>
+  <% elsif current_user.agent? %>
+    <%= f.hidden_field :manager_id, value: current_user.manager.id %>
+    <%= f.hidden_field :manager_id, value: current_user.agent.id %>
+  <% end %>
+
   <div class="field">
     <%= f.label :name %><br>
     <%= f.text_field :name %>
@@ -18,10 +25,6 @@
   <div class="field">
     <%= f.label :active %><br>
     <%= f.check_box :active %>
-  </div>
-  <div class="field">
-    <%= f.label :manager_id %><br>
-    <%= f.number_field :manager_id %>
   </div>
   <div class="actions">
     <%= f.submit %>

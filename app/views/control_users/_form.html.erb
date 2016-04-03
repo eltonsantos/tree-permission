@@ -1,0 +1,52 @@
+<% if current_user.admin? %>
+  <%= f.hidden_field :father_id, value: current_user.id %>
+  Manager:<%= f.select :manager_id, Manager.all.collect{|m| [m.description, m.id]} %>
+  <br />
+  Choose a Profile:
+  <%= f.collection_radio_buttons :profile_id, Profile.all, :id, :description %>
+<% elsif current_user.manager? %>
+  <%= f.hidden_field :father_id, value: current_user.id %>
+  <%= f.hidden_field :manager_id, value: current_user.manager.id %>
+  <%= f.hidden_field :profile_id, value: current_user.profile.id %>
+  Manager:&nbsp; <%= current_user.manager.description %>
+  <br />
+  Profile:&nbsp; <%= current_user.profile.description %>
+  <br />
+  Agent:<%= f.select :agent_id, Agent.all.collect{|a| [a.name, a.id]} %>
+<% else %>
+  <%= f.hidden_field :father_id, value: current_user.id %>
+  <%= f.hidden_field :manager_id, value: current_user.manager.id %>
+  <%= f.hidden_field :profile_id, value: current_user.profile.id %>
+  <%= f.hidden_field :agent_id, value: current_user.agent.id %>
+  Manager:&nbsp; <%= current_user.manager.description %>
+  <br />
+  Profile:&nbsp; <%= current_user.profile.description %>
+  <br />
+  Agent:&nbsp; <%= current_user.agent.name %>
+<% end %>
+
+<div class="field">
+  <%= f.label :email %><br>
+  <%= f.text_field :email, required: true, autofocus: true %>
+</div>
+
+<div class="field">
+  <%= f.label :password %><br>
+  <%= f.password_field :password, required: true, hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length) %>
+</div>
+
+<div class="field">
+  <%= f.label :password_confirmation %><br>
+  <%= f.password_field :password_confirmation, required: true %>
+</div>
+
+<div class="field">
+  <%= f.label :active %><br>
+  <%= f.check_box :active %>
+</div>
+
+<hr />
+
+<div class="actions">
+  <%= f.submit %>
+</div>

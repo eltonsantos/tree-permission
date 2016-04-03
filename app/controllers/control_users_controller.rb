@@ -1,4 +1,4 @@
-class UsersController < ApplicationController
+class ControlUsersController < ApplicationController
   before_action :set_user, only: [:edit, :update]
   before_action :authenticate_user!
 
@@ -29,7 +29,7 @@ class UsersController < ApplicationController
 
     respond_to do |format|
       if @user.update(user_params)
-        format.html { redirect_to controle_users_path, notice: 'User was successfully updated.' }
+        format.html { redirect_to control_users_path, notice: 'User was successfully updated.' }
         format.json { render :index, status: :ok, location: @user }
       else
         format.html { render :edit }
@@ -41,7 +41,7 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
     respond_to do |format|
       if @user.save
-        format.html { redirect_to controle_users_path, notice: 'User was successfully created.' }
+        format.html { redirect_to control_users_path, notice: 'User was successfully created.' }
         format.json { render :index, status: :ok, location: @user }
       else
         format.html { render :new }
@@ -52,7 +52,7 @@ class UsersController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_user
-      @user = Usuario.find(params[:id])
+      @user = User.find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

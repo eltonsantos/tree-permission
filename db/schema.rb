@@ -46,10 +46,10 @@ ActiveRecord::Schema.define(version: 20160328194020) do
   create_table "profiles", force: :cascade do |t|
     t.integer  "manager_id"
     t.integer  "agent_id"
-    t.boolean  "active"
+    t.boolean  "active",      default: true
     t.string   "description"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
   end
 
   create_table "users", force: :cascade do |t|
@@ -59,6 +59,7 @@ ActiveRecord::Schema.define(version: 20160328194020) do
     t.integer  "father_id"
     t.integer  "manager_id"
     t.integer  "agent_id"
+    t.integer  "profile_id"
     t.boolean  "active",                 default: true
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"

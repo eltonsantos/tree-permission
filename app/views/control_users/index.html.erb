@@ -1,0 +1,33 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Users</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Active</th>
+      <th>Father</th>
+      <th>Manager</th>
+      <th>Agent</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @users.each do |user| %>
+      <tr>
+        <td><%= user.email %></td>
+        <td><%= user.active %></td>
+        <td><%= user.father_id.present? ? user.father.email : "---" %></td>
+        <td><%= user.manager_id.present? ? user.manager.description : "---" %></td>
+        <td><%= user.agent_id.present? ? user.agent.name : "---" %></td>
+        <td><%= link_to 'Edit', edit_control_user_path(user) %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New User', new_control_user_path %>

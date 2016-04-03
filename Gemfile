@@ -16,6 +16,7 @@ gem 'therubyracer', platforms: :ruby
 
 gem 'devise'
 gem 'pundit'
+gem 'simple_form'
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'

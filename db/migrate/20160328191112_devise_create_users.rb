@@ -9,6 +9,7 @@ class DeviseCreateUsers < ActiveRecord::Migration
       t.integer :father_id
       t.integer :manager_id
       t.integer :agent_id
+      t.integer :profile_id
       t.boolean :active, default: true
 
       ## Recoverable

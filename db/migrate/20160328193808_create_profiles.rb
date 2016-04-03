@@ -3,7 +3,7 @@ class CreateProfiles < ActiveRecord::Migration
     create_table :profiles do |t|
       t.integer :manager_id
       t.integer :agent_id
-      t.boolean :active
+      t.boolean :active, default: true
       t.string :description
 
       t.timestamps null: false
