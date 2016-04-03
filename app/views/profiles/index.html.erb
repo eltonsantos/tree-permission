@@ -9,6 +9,7 @@
       <th>Agent</th>
       <th>Active</th>
       <th>Description</th>
+      <th>Functionalities</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -20,6 +21,7 @@
         <td><%= profile.agent_id %></td>
         <td><%= profile.active %></td>
         <td><%= profile.description %></td>
+        <td><%= profile.functionality_ids.size %></td>
         <td><%= link_to 'Show', profile %></td>
         <td><%= link_to 'Edit', edit_profile_path(profile) %></td>
         <td><%= link_to 'Destroy', profile, method: :delete, data: { confirm: 'Are you sure?' } %></td>
