@@ -7,10 +7,10 @@
 <% elsif current_user.manager? %>
   <%= f.hidden_field :father_id, value: current_user.id %>
   <%= f.hidden_field :manager_id, value: current_user.manager.id %>
-  <%= f.hidden_field :profile_id, value: current_user.profile.id %>
   Manager:&nbsp; <%= current_user.manager.description %>
   <br />
-  Profile:&nbsp; <%= current_user.profile.description %>
+  Choose a Profile:
+  <%= f.collection_radio_buttons :profile_id, Profile.all, :id, :description %>
   <br />
   Agent:<%= f.select :agent_id, Agent.all.collect{|a| [a.name, a.id]} %>
 <% else %>

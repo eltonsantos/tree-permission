@@ -31,8 +31,11 @@
   </div>
 
   <h3>Add functionalities</h3>
-  <%= f.collection_check_boxes :functionality_ids, Functionality.all, :id, :description %>
-
+  <% if current_user.admin? %>
+    <%= f.collection_check_boxes :functionality_ids, Functionality.all, :id, :description %>
+  <% else %>
+    <%= f.collection_check_boxes :functionality_ids, current_user.profile.functionalities, :id, :description %>
+  <% end %>
 
   <div class="actions">
     <%= f.submit %>
